@@ -11,15 +11,11 @@ def homePage(request: HttpRequest):
 
 def getDoctors(request: HttpRequest):
     doctors = Doctor.objects.all()
-    for doctor in doctors:
-        for specialize in doctor.doctor_specialization:
-            if doctor.specialization == specialize[0]:
-                doctor.specialization = specialize[1]
     context = {'doctors':doctors}
     return render(request, 'clinic/list.html', context)
 
 def addDoctor(request: HttpRequest):
-    doctor_specializations = Doctor.doctor_specialization
+    doctor_specializations = Doctor.specialization_choices.choices
     if request.method == 'POST':
         doctor = Doctor(name=request.POST['name'], description=request.POST['description'], experience_years=request.POST['experience_years'], rating=request.POST['rating'], specialization=request.POST['specialization'], image=request.FILES['image'])
         doctor.save()
@@ -30,7 +26,7 @@ def addDoctor(request: HttpRequest):
 def updateDoctor(request: HttpRequest, doctor_id: int):
     try:
         doctor = Doctor.objects.get(id=doctor_id)
-        doctor_specializations = Doctor.doctor_specialization
+        doctor_specializations = Doctor.specialization_choices.choices
         if request.method == 'POST':
             doctor.name = request.POST['name']
             doctor.description = request.POST['description']
@@ -57,12 +53,11 @@ def doctorDetail(request: HttpRequest, doctor_id: int):
     try:
         doctor = Doctor.objects.get(id=doctor_id)
         appointments = Appointment.objects.filter(doctor=doctor)
-        for specialize in Doctor.doctor_specialization:
-            if doctor.specialization == specialize[0]:
-                doctor.specialization = specialize[1]
+        count = appointments.count
+        date = datetime.isoformat(datetime.today(), timespec='minutes').replace('+',':')
     except:
         return render(request, 'clinic/not_found.html')
-    context = {'doctor':doctor, 'appointments':appointments}
+    context = {'doctor':doctor, 'appointments':appointments, 'count':count, 'date':date}
     return render(request, 'clinic/detail.html', context)
 
 def bookAppointment(request: HttpRequest, doctor_id: int):
@@ -77,10 +72,6 @@ def bookAppointment(request: HttpRequest, doctor_id: int):
 
 def searchDoctor(request: HttpRequest):
     doctors = Doctor.objects.all().filter(name__contains=request.GET.get('doctor', ''))
-    for doctor in doctors:
-        for specialize in doctor.doctor_specialization:
-            if doctor.specialization == specialize[0]:
-                doctor.specialization = specialize[1]
     context = {'doctors':doctors}
     return render(request, 'clinic/search.html', context)
 

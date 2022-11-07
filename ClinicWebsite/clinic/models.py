@@ -6,12 +6,8 @@ class Doctor(models.Model):
     description = models.TextField()
     experience_years = models.IntegerField()
     rating = models.FloatField()
-    doctor_specialization = (
-        ('GENERAL','General Doctor'),
-        ('EMERGENCY','Emergency Doctor'),
-        ('ORTHOPEDICS','Orthopedics Doctor'),
-    )
-    specialization = models.CharField(max_length=256, choices=doctor_specialization, default='GENERAL')
+    specialization_choices = models.TextChoices('Specialization', ['General Doctor','Emergency Doctor','Orthopedics Doctor'])
+    specialization = models.CharField(max_length=256, choices=specialization_choices.choices)
     image = models.ImageField(upload_to='images/')
         
 

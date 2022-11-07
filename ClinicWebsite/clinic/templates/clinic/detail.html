@@ -2,11 +2,11 @@
 {% block title %} Dr. {{doctor.name}} {% endblock %}
 {% block content %}
             <div class="w-75 m-4 px-4 border rounder-3 mx-auto">
-                <h1 class="my-3 border-bottom pb-2 ps-3">Dr. {{doctor.name}}</h1>
+                <h1 class="my-3 border-bottom pb-2 ps-3"><img src="{{doctor.image.url}}" class=" mb-3 rounded-5" style="height: 50px; width:50px" alt="{{doctor.name}}" /> Dr. {{doctor.name}}</h1>
                 <p class="ms-5 d-flex justify-content-between">
                     <span>{{doctor.specialization}}</span>
                     <span class="d-flex align-items-center">
-                        Patients: 
+                        Appointments: {{count}}
                     </span>
                 </p>
                 <p class="ms-3 mb-4 ps-4">{{doctor.description}}</p>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="input-group mb-2">
                             <div class="input-group-text w-25">Date</div>
-                            <input type="datetime-local" name="date" class="form-control" step="0.1" min="0" max="5">
+                            <input type="datetime-local" name="date" class="form-control" value="{{date}}">
                         </div>
                         <div class="input-group mb-2 justify-content-center mt-3">
                             <input type="submit" value="Book Appointment" class="btn btn-secondary">
@@ -45,15 +45,17 @@
                         <thead>
                           <tr scope="row">
                             <th scope="col">Name</th>
+                            <th scope="col" class="text-center">Date</th>
                             <th scope="col" class="text-center">Age</th>
                             <th scope="col" class="text-center">Case</th>
-                            <th scope="col" class="text-center">Attend</th>
+                            <th scope="col" class="text-center">Attended</th>
                           </tr>
                         </thead>
                         <tbody>
                     {% for appointment in appointments %}
                     <tr scope="row">
                         <td scope="col"><i class="bi bi-arrow-return-right"></i> {{appointment.name}}</td>
+                        <td scope="col" class="text-center">{{appointment.date}}</td>
                         <td scope="col" class="text-center">{{appointment.age}}</td>
                         <td scope="col" class="text-center">{{appointment.case}}</td>
                         <td scope="col" class="text-center">
@@ -68,6 +70,5 @@
                     </tbody>
                     </table>                                    
                 </p>
-                {{the_date}}
             </div>
 {% endblock %}
