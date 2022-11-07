@@ -17,6 +17,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th></th>
                 <th scope="col">Doctor Name</th>
                 <th scope="col">Description </th>
                 <th scope="col">Specialization</th>
@@ -26,8 +27,10 @@
             </tr>
         </thead>
         <tbody>
+            
             {% for doctor in doctors %}
             <tr>
+            <th></th>
                 <th scope="row"><a href="{% url 'ClinicApp:doctor_detail' doctor.id %}" style=" color: #006d77; ">{{ doctor.name }}</a></th>
                 <td>{{ doctor.description }}</td>
                 <td>{{ doctor.specialization }}</td>

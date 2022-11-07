@@ -4,6 +4,7 @@ from django.db import models
 
 class Doctor(models.Model):
     name = models.CharField(max_length = 256)
+    image = models.ImageField(upload_to="images/")
     description = models.TextField()
     spec_choices = models.TextChoices('specialization' , 'FamilyMedicine Surgery Anesthesiology Physiotherapy Dental' )
     SPECIALIZATION_CHOICES = [

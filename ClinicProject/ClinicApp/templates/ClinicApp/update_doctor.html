@@ -5,8 +5,12 @@
 {% block content %}
     <h1>Update Doctor {{ doctor.title }}</h1>
 
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        <div class="mb-3">
+            <label  class="form-label">Profile Image</label>
+            <input type="file" name="image" accept="image/*" class="form-control" value="{{doctor.image}}">
+            </div>
         <div class="mb-3">
             <label  class="form-label">Name</label>
             <input type="text" class="form-control" name="name" value="{{doctor.name}}">

@@ -7,7 +7,7 @@ from .models import Doctor, Appointment
 def add_doctor(request : HttpRequest):
 
     if request.method == "POST":
-        new_doctor = Doctor(name=request.POST["name"], description = request.POST["description"], specialization=request.POST["specialization"], experience_years = request.POST["experience_years"], rating = request.POST["rating"])
+        new_doctor = Doctor(image=request.FILES["image"], name=request.POST["name"], description = request.POST["description"], specialization=request.POST["specialization"], experience_years = request.POST["experience_years"], rating = request.POST["rating"])
         new_doctor.save()
 
 
@@ -22,7 +22,7 @@ def list_doctors(request: HttpRequest):
     else:
         doctors = Doctor.objects.all()
 
-    return render(request, "ClinicApp/view_doctors.html", {"doctors" : doctors})
+    return render(request, "ClinicApp/view_doctors.html", {"doctors" : doctors })
 
 
 #---------------DOCTORS' DETAILS------------
