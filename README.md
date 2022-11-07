@@ -40,3 +40,92 @@
 
 ### Bonus
 When patient books an appointmnet with the doctor , check if the doctor is free on that date & time.
+
+
+
+
+
+
+
+
+{% extends "clinicApp/clinic.html" %}
+
+{% block home %}
+{%endblock%}
+
+
+{% block pu %}
+
+
+
+
+
+<div class="container pt-4">
+    <h1>Appointment :</h1>
+   
+
+
+
+   
+
+
+    {% for app in appo_post %}
+
+
+        <div class="col ">
+          <div class="card ">
+            <div class="card-body ">
+                <br>
+              <h3 class="card-title tex_co"> {{ app.patient_name }}</h3>
+              <br>
+              <h3 class="tex_co2">Age : {{ app.patient_age }}</h3>
+    <div class="pt-2 text-center tex_co">
+        {{ app.case_description }}
+    </div>
+
+       
+
+              
+
+              
+            </div>
+
+            
+          </div>
+
+
+
+     <hr>
+        
+
+        {% endfor %}
+
+
+
+
+      </div>
+
+
+
+    </div>
+
+  
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+      <div class="pt-2">
+        <select name="specialization" class="form-select" aria-label="Default select example">
+          <option selected>your specialization ? </option>
+          <option value="O">orthodontics</option>
+          <option value="F">fillings</option>
+          <option value="Or">oral medicine</option>
+        </select> 
+        </div>
