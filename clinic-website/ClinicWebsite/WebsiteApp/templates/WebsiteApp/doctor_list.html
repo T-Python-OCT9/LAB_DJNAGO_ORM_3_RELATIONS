@@ -1,0 +1,45 @@
+{% extends 'WebsiteApp/base.html' %}
+
+{% block title %} Hope Clinics-All Doctors {% endblock %}
+
+{% block content %}
+<h1>Our Doctors</h1>
+
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Doctor Name</th>
+            <th scoope="col">Specialization</th>
+            <th scope="col">Description</th>
+            <th scope="col">Rate</th>
+            <th scope="col">experience years</th>
+            <th scope="col">Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for doctor in doctors %}
+            <tr>
+                <th scope="row"><a href=""> {{ doctor.Docname }} </a></th>
+                <td>{{ doctor.DocDescrip }}</td>
+                <td>{{ doctor.DocRate }}</td>
+                <td>{{ doctor.experience_years }}</td>
+                <td>{{ doctor.DocSpecialization }}</td>
+                <td>
+
+                    <div class="dropdown">
+                        <ul class="dropdown-menu" >
+                          <li><a class="dropdown-item" href=""> Update </a></li>
+                          <li><a class="dropdown-item" href=""> Delete </a></li>
+                        </ul>
+                      </div>
+                    
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{%endblock%}

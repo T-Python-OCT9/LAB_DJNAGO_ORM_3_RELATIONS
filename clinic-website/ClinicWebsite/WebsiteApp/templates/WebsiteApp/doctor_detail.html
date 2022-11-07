@@ -1,0 +1,20 @@
+{% extends 'WebsiteApp/base.html' %}
+
+{% block title %} {{doctor.Docname}} {% endblock %}
+{% block content %}
+
+<div  >
+    <h1 style="color:rgb(176, 131, 77) ;text-align:left;">{{}}</h1>
+    <div style="text-align:center  ;align-content: center;">
+        <div >
+            <h3 style="color:rgb(176, 131, 77);text-align:center ;"> {{ doctor.Docname }} </h3><br>                
+            <div style="text-align:left ; padding:0 10%;">
+                <lable style="color:rgb(87, 65, 40)  ;"><strong style="color:rgb(176, 131, 77) ;">Description</strong> </t>{{doctor.DocDescrip}}, </t>{{ doctor.DocRate }}</lable>
+            </div><br>
+            <p style="color:rgb(87, 65, 40) ;text-align: center; "> {{doctor.DocRate}} </p>
+            <hr>
+        </div>
+    
+    </div>
+</div>
+{% endblock %}
