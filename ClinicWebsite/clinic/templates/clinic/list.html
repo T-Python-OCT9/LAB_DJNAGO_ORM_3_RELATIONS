@@ -1,0 +1,25 @@
+{% extends 'clinic/base.html' %}
+{% block title %} Doctors List {% endblock %}
+{% block content %}
+<h1 class="my-3 border-bottom">Doctors</h1>
+<table class="table">
+    <thead>
+      <tr scope="row">
+        <th scope="col">Name</th>
+        <th scope="col" class="text-center">Specialization</th>
+        <th scope="col" class="text-center">Rate</th>
+        <th scope="col" class="text-center">Experience Years</th>
+      </tr>
+    </thead>
+    <tbody>
+{% for doctor in doctors %}
+<tr scope="row">
+    <td scope="col"><i class="bi bi-arrow-return-right"></i> <a href="{% url 'clinic:detail' doctor.id %}" class="link-secondary">Dr. {{doctor.name}}</a></td>
+    <td scope="col" class="text-center">{{doctor.specialization}}</td>
+    <td scope="col" class="text-center">{{doctor.rating}}</td>
+    <td scope="col" class="text-center">{{doctor.experience_years}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
