@@ -1,0 +1,37 @@
+{% extends 'clinic/base.html' %}
+
+{% block content %}
+    <h1>Add New Doctor</h1>
+
+    <form action="" method="POST" class="container mt-5">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label  class="form-label">Name</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+
+        <div class="mb-3">
+            <label  class="form-label">Description</label>
+            <textarea type="text" class="form-control" name="description"></textarea>
+        </div>
+
+        <div class="mb-3">
+        <select class="form-select" aria-label="Default select example" name="specialization">
+            <option selected>Select your specialization</option>
+            <option value="General Doctor">General Doctor</option>
+            <option value="Dentist">Dentist</option>
+            <option value="Psychiatric">Psychiatric</option>
+          </select>
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Experience years</label>
+            <input type="number" class="form-control" name="experience_years" />
+        </div>
+        <div class="mb-3">
+            <label  class="form-label">Rating </label>
+            <input type="number" class="form-control" name="rating">
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="add doctor" />
+    </form>
+{% endblock %}
