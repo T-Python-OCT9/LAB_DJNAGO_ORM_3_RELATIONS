@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}<title>Add Doctor</title>{% endblock  %}
+
+{% block header %}<h1>Adding new Doctor</h1> {% endblock%}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label  class="form-label">Doctor Name:</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+
+        <div class="mb-3">
+            <label  class="form-label">Description</label>
+            <textarea type="text" class="form-control" name="description"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label  class="form-label">specialization:</label>
+            <input type="text" class="form-control" name="specialization">
+        </div>
+
+        <div class="mb-3">
+            <label  class="form-label">Experience Years:</label>
+            <input type="number" class="form-control" name="experience_years" />
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Rating:</label>
+            <input class="form-control" name="rating" />
+        </div>
+        
+        <input class="btn btn-primary" type="submit" value="Add Doctor" />
+    </form>
+{% endblock %}
