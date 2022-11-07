@@ -51,6 +51,7 @@ def update_doctor(request: HttpRequest, doctor_id:int):
         doctor.specialization = request.POST["specialization"]
         doctor.experience_years = request.POST["experience_years"]
         doctor.rating = request.POST["rating"]
+        doctor.image = request.FILES["image"]
         doctor.save()
 
         return redirect("ClinicApp:list_doctors")
