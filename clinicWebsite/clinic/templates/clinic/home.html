@@ -1,0 +1,44 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} Clinic Website {% endblock%}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  </head>
+
+  
+  <body style="background-color:rgba(248, 252, 252, 0.825);"> 
+  <div style="background-color:rgba(233, 244, 244, 0.825);">
+  <header class="d-flex justify-content-center py-3" >
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="{% url 'clinic:home' %}" class="nav-link px-2 text-secondary" aria-current="page">Home</a></li>
+      <li class="nav-item"><a href="{% url 'clinic:all_doctors' %}"class="nav-link px-2 text-secondary">Doctors</a></li>
+      <li class="nav-item"><a href="{% url 'clinic:add_new_doctor' %}" class="nav-link px-2 text-secondary">Add new docotr</a></li>
+      <li class="nav-item"><a href="{% url 'clinic:appointments' %}" class="nav-link px-2 text-secondary">New Appointment</a></li>
+    </ul>
+  </header>
+  <div class=" container active-cyan-3 active-cyan-4 mb-4">
+    <form role="search" method="GET" action="{% url 'clinic:list_doctors' %}">
+      <input class="form-control" type="search" placeholder="Search Name the Doctor" name="search" aria-label="Search">
+    </form>
+    
+  
+  </div>
+  <hr>
+</div>
+
+  <div class="container-fluid mt-2">
+    {% block content %}
+
+    <img src="{% static 'clinic.jpg' %}" class="w-100" style="height:60vh; object-fit: cover;"/>
+   <br>
+      <br><h2 style="text-align:center; font-family:Arial, Helvetica, sans-serif; background-color:rgba(233, 244, 244, 0.825); border-radius: 12px;">Welcome to our Clinic </h2>
+    </div>
+
+    {% endblock %}
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
