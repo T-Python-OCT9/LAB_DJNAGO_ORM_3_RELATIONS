@@ -24,12 +24,12 @@
 
 {% block info %}
 
-{% for post in app_info %}
+{% for doctor in app_info %}
 
         <div class="border rounded p-3 mt-3">
-            <h5>{{ post.patient_name }}</h5>
-            <p>{{ post.case_description }}</p>
-            <span>{{ post.appointment_datetime }}</span>
+            <h5>{{ doctor.patient_name }}</h5>
+            <p>{{ doctor.case_description }}</p>
+            <span>{{ doctor.appointment_datetime }}</span>
         </div>
     {% endfor %}
 
@@ -44,7 +44,7 @@
 
 {% block add %}
 <div class="pt-4 container">
-    <form action="" method="POST">
+    <form action="{% url 'clinicApp:info' postView.id %}" method="POST" >
         {% csrf_token %}
     <div class="input-group mb-3">
         <span class="input-group-text">Your name:</span>

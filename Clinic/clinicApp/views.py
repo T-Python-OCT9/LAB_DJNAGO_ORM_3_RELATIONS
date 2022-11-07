@@ -31,7 +31,7 @@ def addDoctor(request:HttpRequest):
 def view_info(request:HttpRequest,doctor_id : int):
     doctor=Doctor.objects.get(pk=doctor_id)
     appointment_info=Appointment.objects.filter(doctor=doctor)
-    print(appointment_info)
+   
     return render(request,'clinicApp/viewsDoctor.html',{"postView":doctor,"app_info":appointment_info})
 
 
@@ -43,12 +43,12 @@ def view_info(request:HttpRequest,doctor_id : int):
 
 
 def addAppointment(request:HttpRequest,doctor_id:int):
-    doctor = Doctor.objects.get(pk=doctor_id)
+    doctor = Doctor.objects.get(id=doctor_id)
     if request.method == "POST":
         appointment_form=Appointment(doctor=doctor,patient_name=request.POST["patient_name"],case_description=request.POST["case_description"],patient_age=request.POST["patient_age"],appointment_datetime=request.POST["appointment_datetime"],is_attended=request.POST["is_attended"])
         appointment_form.save()
     print(appointment_form)
-    return redirect('clinicApp:views',doctor.pk)
+    return redirect('clinicApp:views',doctor.id)
 
 #____________________________________________
 
