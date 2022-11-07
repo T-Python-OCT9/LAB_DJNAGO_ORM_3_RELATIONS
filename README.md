@@ -115,3 +115,17 @@ When patient books an appointmnet with the doctor , check if the doctor is free 
 
 
 {% endblock %}
+
+
+
+
+
+
+      <div class="pt-2">
+        <select name="specialization" class="form-select" aria-label="Default select example">
+          <option selected>your specialization ? </option>
+          <option value="O">orthodontics</option>
+          <option value="F">fillings</option>
+          <option value="Or">oral medicine</option>
+        </select> 
+        </div>

@@ -3,9 +3,6 @@ from django.http import HttpRequest
 from.models import Doctor,Appointment
 
 
-
-
-
 #____________________________________________
 
 #home
@@ -28,15 +25,30 @@ def addDoctor(request:HttpRequest):
 
 #____________________________________________
 
+
+#view
+
+def view_info(request:HttpRequest,doctor_id : int):
+    doctor=Doctor.objects.get(pk=doctor_id)
+    appointment_info=Appointment.objects.filter(doctor=doctor)
+    print(appointment_info)
+    return render(request,'clinicApp/viewsDoctor.html',{"postView":doctor,"app_info":appointment_info})
+
+
+
+
+#____________________________________________
+
 #add appointment data
 
 
-def addAppointment(request:HttpRequest,post_id:int):
-    doctor = Doctor.objects.get(id=post_id)
+def addAppointment(request:HttpRequest,doctor_id:int):
+    doctor = Doctor.objects.get(pk=doctor_id)
     if request.method == "POST":
-        appointment_form=Appointment(patient_name=request.POST["patient_name"],case_description=request.POST["case_description"],patient_age=request.POST["patient_age"],appointment_datetime=request.POST["appointment_datetime"],is_attended=request.POST["is_attended"])
+        appointment_form=Appointment(doctor=doctor,patient_name=request.POST["patient_name"],case_description=request.POST["case_description"],patient_age=request.POST["patient_age"],appointment_datetime=request.POST["appointment_datetime"],is_attended=request.POST["is_attended"])
         appointment_form.save()
-    return redirect('clinicApp:views',doctor.id)
+    print(appointment_form)
+    return redirect('clinicApp:views',doctor.pk)
 
 #____________________________________________
 
@@ -49,17 +61,7 @@ def postDoctor(request:HttpRequest):
         doctor=Doctor.objects.all()
     return render(request,'clinicApp/post_d.html',{"docor_p":doctor})
 
-#____________________________________________
-
-#view
-
-def view_info(request:HttpRequest,post_id : int):
-    doctor=Doctor.objects.get(id=post_id)
-    appointment_info=Appointment.objects.filter(doctor=doctor)
-    return render(request,'clinicApp/viewsDoctor.html',{"postView":doctor,"app_info":appointment_info})
-
-
-#____________________________________________
+#
 
 #appointment view data
 

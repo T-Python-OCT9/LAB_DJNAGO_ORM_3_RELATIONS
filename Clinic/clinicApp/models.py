@@ -2,9 +2,14 @@ from django.db import models
 
 
 class Doctor(models.Model):
+    spe=[
+        ("O","orthodontics"),
+        ("F","fillings"),
+        ("Or","oral medicine")
+    ]
     name=models.CharField(max_length=256)
     description=models.TextField()
-    specialization=models.TextField()
+    specialization=models.CharField(max_length=256, choices=spe, default="O")
     experience_years=models.CharField(max_length=256)
     rating=models.FloatField()
 
