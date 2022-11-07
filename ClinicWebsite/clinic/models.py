@@ -25,4 +25,3 @@ class Appointment(models.Model):
     patient_age = models.IntegerField()
     appointment_datetime = models.DateField()
     is_attended = models.BooleanField()
-

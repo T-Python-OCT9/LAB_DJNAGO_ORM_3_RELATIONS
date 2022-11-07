@@ -5,16 +5,14 @@
 
 <h1>Doctors List</h1>
 
-{% if "search"  in  request.GET %}
-    <h2> Search results for "{{ request.GET.search }}": </h2>
-{% endif %}
 
-<div class="container">
+
+    <div class="container">
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Name</th>
-            <th scope="col">Discription</th>
+            <th scope="col">Description</th>
             <th scope="col">Specialization</th>
             <th scope="col">years of experience</th>
             <th scope="col">rating</th>
@@ -24,8 +22,9 @@
             {% for doctor in doctors %}
             <tr>
                 <th scope="row"><a href="{% url 'clinic:detail_page' doctor.id %}">{{ doctor.name }}</a></th>
+                <td>{{ doctor.description }}</td>
                 <td>{{ doctor.specialization }}</td>
-                <td>{{ doctor.discription }}</td>
+                <td>{{ doctor.experience_years }}</td>
                 <td>{{ doctor.rating }}</td>
                 
             </tr>
@@ -34,6 +33,5 @@
         </tbody>
     </table>
 </div>
-
 
 {% endblock %}

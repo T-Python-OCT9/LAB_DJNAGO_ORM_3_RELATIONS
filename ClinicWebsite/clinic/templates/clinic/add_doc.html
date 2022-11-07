@@ -12,28 +12,26 @@
 
         <div class="mb-3">
             <label  class="form-label">Description</label>
-            <textarea type="text" class="form-control" name="discription"></textarea>
+            <textarea type="text" class="form-control" name="description"></textarea>
         </div>
 
         <div class="mb-3">
         <select class="form-select" aria-label="Default select example" name="specialization">
             <option selected>Select your specialization</option>
-            <option value="1">General Doctor</option>
-            <option value="2">Dentist</option>
-            <option value="3">Psychiatric</option>
+            <option value="General Doctor">General Doctor</option>
+            <option value="Dentist">Dentist</option>
+            <option value="Psychiatric">Psychiatric</option>
           </select>
         </div>
         <div class="mb-3">
             <label  class="form-label">Experience years</label>
-            <textarea type="text" class="form-control" name="experience_years"></textarea>
+            <input type="number" class="form-control" name="experience_years" />
         </div>
         <div class="mb-3">
             <label  class="form-label">Rating </label>
-            <textarea type="text" class="form-control" name="rating"></textarea>
+            <input type="number" class="form-control" name="rating">
         </div>
 
-      
-        
         <input class="btn btn-primary" type="submit" value="add doctor" />
     </form>
 {% endblock %}
