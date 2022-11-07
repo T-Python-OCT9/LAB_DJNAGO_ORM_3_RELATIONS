@@ -1,0 +1,48 @@
+{% extends 'WebsiteApp/base.html' %}
+
+{% block title %} Hope Clinics-Add doctor {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 style="color:rgb(36, 101, 134) ;">Add New Doctor </h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div><label style="color:rgb(7, 35, 78) ;">Doctor Name:</label><br>
+        <input type="text" name="Docname" placeholder="DoctorName" /><br>
+        </div><br>
+
+        <label for="dog-names">Doctor Specialization:</label><br>
+        <select name="DocSpecialization">
+            <option value="" style="color:silver ;">choose one</option>
+            <option value="Anatomical_Pathology">Anatomical Pathology</option>
+            <option value="Obstetrics/Gynecology">Obstetrics/Gynecology</option>
+            <option value="Anesthesiology">Anesthesiology</option>
+            <option value="Cardiology">Cardiology</option>
+            <option value="Critical_Care_Medicine">Critical Care Medicine</option>
+            <option value="Dermatology">Dermatology</option>
+            <option value="Diagnostic_Radiology">Diagnostic Radiology</option>
+            <option value="Emergency_Medicine">Emergency Medicine</option>
+            <option value="Gastroenterology">Gastroenterology</option>
+            <option value="Family-Medicin">Family Medicin</option>
+            <option value="Hematology">Hematology</option>
+        </select><br>
+        
+              
+        <div><label style="color:rgb(7, 35, 78) ;">Description:</label><br>
+        <textarea name="DocDescrip" placeholder="Description"></textarea><br>
+        </div>
+        <div><label style="color:rgb(7, 35, 78) ;">Doctor Rate:</label><br>
+            <input type="text" name="Doctor_Rate" placeholder="Doctor Rate" /><br>
+            </div>
+        
+        <div class="mb-3">
+            <label  style="color:rgb(7, 35, 78) ;" class="form-label">experience years</label><br>
+            <input type="text" name="experience_years"placeholder='experience years'>
+        </div>
+        
+        <input type="submit" value="Create" />
+    </form>
+
+</div>
+{%endblock%}
