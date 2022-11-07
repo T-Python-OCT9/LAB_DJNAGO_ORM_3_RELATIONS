@@ -15,8 +15,6 @@ def add_doctor(request:HttpRequest):
         new_doctor = Doctor(name=request.POST.get('name'), description= request.POST.get('description'),specialization = request.POST.get('specialization') ,experience_years= request.POST.get('experience_years'),rating= request.POST.get('rating'))
         new_doctor.save()
 
-        # return redirect("blog:list_post")
-
     return render(request, "clinic/add_doctors.html")
 
 
@@ -51,8 +49,26 @@ def add_appointment(request:HttpRequest, doctor_id: int):
     doctor = Doctor.objects.get(id=doctor_id)
     if request.method == "POST":
         new_appointment = Appointment(doctor=doctor,pationt_name=request.POST.get('pationt_name'), case_description= request.POST.get('case_description'),patient_age = request.POST.get('patient_age') ,appointment_datetime= request.POST.get('appointment_datetime'),is_attended= request.POST.get('is_attended'))
-
         new_appointment.save()
 
 
     return redirect("clinic:view_doctor", doctor.id)
+
+
+def update_doctor(request: HttpRequest, doctor_id:int):
+    try:
+        doctor = Doctor.objects.get(id=doctor_id)
+    except:
+        return render(request, "clinic/not_found.html")
+    else:
+        if request.method == 'POST':
+            doctor.name = request.POST.get('name')
+            doctor.description = request.POST.get('description')
+            doctor.specialization = request.POST.get('specialization')
+            doctor.experience_years = request.POST.get('experience_years')
+            doctor.rating = request.POST.get('rating')
+            post.save()
+
+            return redirect("clinic:list_doctors")
+
+        return render(request, "clinic/update_doctor.html",{'doctor': doctor})
