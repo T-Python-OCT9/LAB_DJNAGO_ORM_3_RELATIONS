@@ -33,8 +33,26 @@ def doctors(request:HttpRequest):
 def view_doctor(request:HttpRequest, doctor_id: int):
     try:
         doctor = Doctor.objects.get(id=doctor_id)
+        appointments = Appointment.objects.filter(doctor = doctor)
     except:
         return render(request, "clinic/not_found.html")
 
-    context = {'doctor': doctor}
+    context = {'doctor': doctor, 'appointments': appointments}
     return render(request, "clinic/view_doctor.html", context)
+
+
+def appointment(request:HttpRequest, doctor_id):
+    doctor = Doctor.objects.get(id=doctor_id)
+
+    return render(request, "clinic/appointment.html",{'doctor': doctor})
+
+
+def add_appointment(request:HttpRequest, doctor_id: int):
+    doctor = Doctor.objects.get(id=doctor_id)
+    if request.method == "POST":
+        new_appointment = Appointment(doctor=doctor,pationt_name=request.POST.get('pationt_name'), case_description= request.POST.get('case_description'),patient_age = request.POST.get('patient_age') ,appointment_datetime= request.POST.get('appointment_datetime'),is_attended= request.POST.get('is_attended'))
+
+        new_appointment.save()
+
+
+    return redirect("clinic:view_doctor", doctor.id)

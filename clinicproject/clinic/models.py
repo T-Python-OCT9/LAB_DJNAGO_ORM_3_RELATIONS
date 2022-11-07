@@ -11,11 +11,11 @@ class Doctor(models.Model):
 
 
 class Appointment(models.Model): 
-    appointment = models.ForeignKey(Doctor, on_delete = models.CASCADE)
-    relation_with_doctor = models.CharField(max_length=256)
+    doctor = models.ForeignKey(Doctor, on_delete = models.CASCADE)
+    # relation_with_doctor = models.CharField(max_length=256)
     pationt_name = models.CharField(max_length=64)
     case_description = models.TextField()
-    patient_age = models.CharField(max_length=64)
+    patient_age = models.DateTimeField()
     appointment_datetime = models.DateTimeField()
     is_attended = models.BooleanField()
 
