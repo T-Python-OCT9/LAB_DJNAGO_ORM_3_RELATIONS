@@ -2,7 +2,7 @@
 {% block title %} Dr. {{doctor.name}} {% endblock %}
 {% block content %}
             <div class="w-75 m-4 px-4 border rounder-3 mx-auto">
-                <h1 class="my-3 border-bottom pb-2 ps-3">{{doctor.name}}</h1>
+                <h1 class="my-3 border-bottom pb-2 ps-3">Dr. {{doctor.name}}</h1>
                 <p class="ms-5 d-flex justify-content-between">
                     <span>{{doctor.specialization}}</span>
                     <span class="d-flex align-items-center">
@@ -68,5 +68,6 @@
                     </tbody>
                     </table>                                    
                 </p>
+                {{the_date}}
             </div>
 {% endblock %}

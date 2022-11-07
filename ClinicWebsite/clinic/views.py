@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from .models import Doctor, Appointment
+from datetime import datetime
 
 # Create your views here.
 def homePage(request: HttpRequest):
-    context = {}
+    doctors = Doctor.objects.all()[:4]
+    context = {'doctors':doctors}
     return render(request, 'clinic/home.html', context)
 
 def getDoctors(request: HttpRequest):

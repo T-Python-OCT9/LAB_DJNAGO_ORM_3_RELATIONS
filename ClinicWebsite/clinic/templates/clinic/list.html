@@ -9,6 +9,7 @@
         <th scope="col" class="text-center">Specialization</th>
         <th scope="col" class="text-center">Rate</th>
         <th scope="col" class="text-center">Experience Years</th>
+        <th scope="col" class="text-center">Manage</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,12 @@
     <td scope="col" class="text-center">{{doctor.specialization}}</td>
     <td scope="col" class="text-center">{{doctor.rating}}</td>
     <td scope="col" class="text-center">{{doctor.experience_years}}</td>
+    <td scope="col" class="text-center">
+      <div class="btn-group">
+          <a class="btn btn-outline-secondary" href="{% url 'clinic:update' doctor.id %}"><i class="bi bi-pencil-square"></i></a>
+          <a class="btn btn-outline-secondary" href="{% url 'clinic:remove' doctor.id %}"><i class="bi bi-trash"></i></a>
+      </div>
+  </td>
 </tr>
 {% endfor %}
 </tbody>
