@@ -4,14 +4,15 @@ from django.db import models
 class Doctor(models.Model):
     name = models.CharField(max_length=64)
     description = models.TextField()
-    specialization = models.TextField()
-    experience_years = models.CharField(max_length=64)
+    char_specialization=models.TextChoices("specialization type" ,["Family medicine" ,"surgery" , "Dental"])
+    specialization=models.CharField(max_length=64 , choices =char_specialization.choices)
+    experience_years = models.IntegerField()
     rating = models.FloatField()
-
+    
 
 
 class Appointment(models.Model): 
-    appointment = models.ForeignKey(Doctor, on_delete = models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete = models.CASCADE)
     Patient_Name = models.CharField(max_length=256)
     Patient_Age = models.IntegerField()
     Relation_With_Doctor = models.CharField(max_length=256)
