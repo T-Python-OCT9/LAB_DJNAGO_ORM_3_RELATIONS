@@ -21,7 +21,7 @@
     {% for appointment in appointments %}
         <div class="border rounded p-3 mt-3">
             <h5>Patient Name: {{ appointment.patient_name }}</h5> <hr>
-            <p>case description: {{ appointment.case_description }}</p>
+            <p>case description: {{ appointment.case_description   }}</p>
             <span>Patient age: {{ appointment.patient_age }}</span><hr>
             <span>{{ appointment.appointment_datetime }}</span>
             <span>{{ appointment.is_attended }}</span>

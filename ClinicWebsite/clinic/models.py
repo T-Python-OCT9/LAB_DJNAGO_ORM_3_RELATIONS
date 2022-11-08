@@ -17,6 +17,9 @@ class Doctor(models.Model):
     experience_years = models.IntegerField()
     rating = models.FloatField()
 
+    def __str__(self) -> str:
+        return f"{self.name}, {self.specialization}"
+
 class Appointment(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete = models.PROTECT)
 
@@ -25,3 +28,6 @@ class Appointment(models.Model):
     patient_age = models.IntegerField()
     appointment_datetime = models.DateField()
     is_attended = models.BooleanField()
+
+    def __str__(self) -> str:
+        return f"{self.patient_name}, {self.appointment_datetime}"

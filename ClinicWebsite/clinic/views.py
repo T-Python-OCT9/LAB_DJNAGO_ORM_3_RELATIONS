@@ -10,6 +10,10 @@ def home_page (request : HttpRequest):
 
     return render(request, "clinic/home_page.html")
 
+def error_page (request : HttpRequest):
+
+    return render(request, "clinic/not_found.html")
+
 
 def list_doctors(request: HttpRequest):
 
@@ -46,12 +50,15 @@ def make_appointment(request : HttpRequest, doc_id: int):
 
 
 def add_doctor(request: HttpRequest):
-
-    if request.method == "POST":
-        new_doctor = Doctor(name= request.POST["name"], description = request.POST["description"],
-            specialization = request.POST["specialization"],experience_years = request.POST["experience_years"],
-            rating = request.POST["rating"])
-        new_doctor.save()
+    
+    if request.user.has_perm("clinic.delete_doctor"):
+        if request.method == "POST":
+            new_doctor = Doctor(name= request.POST["name"], description = request.POST["description"],
+                specialization = request.POST["specialization"],experience_years = request.POST["experience_years"],
+                rating = request.POST["rating"])
+            new_doctor.save()
+    else:
+        return redirect('clinic:home_page')
 
     return render(request, "clinic/add_doc.html")
 
