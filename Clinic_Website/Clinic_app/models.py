@@ -18,6 +18,7 @@ class Doctor(models.Model):
         max_length=250, choices=FIELDS, default=000)
     experience_years = models.IntegerField()
     rating = models.FloatField()
+    
 
 
 class Appointment(models.Model):

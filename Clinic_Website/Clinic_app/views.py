@@ -13,8 +13,7 @@ def home(request: HttpRequest):
     else:
         doctors = Doctor.objects.all()
 
-    return render(request, "Clinic_app/home.html", {"doctors": doctors})
-
+    return render(request,"Clinic_app/home.html",{"doctors": doctors})
 
 def add_doctor(request: HttpRequest):
     if request.method == "POST":
@@ -27,11 +26,11 @@ def add_doctor(request: HttpRequest):
 def detail_doctor(request: HttpRequest, doctor_id: int):
     try:
         doctor = Doctor.objects.get(id=doctor_id)
-        appointments = Appointment.objects.filter(doctor=doctors)
+        appointments = Appointment.objects.filter(doctor=doctor)
     except:
         return render(request, "Clinic_app/not_found.html")
 
-    return render(request, "Clinic_app/detail_doctor.html", {"doctor": doctor, "appointments": appointments})
+    return render(request, "Clinic_app/detail_doctor.html", {"doctor": doctor,"appointments": appointments})
 
 
 def delete_doctor(request: HttpRequest, doctor_id: int):
@@ -65,9 +64,10 @@ def update_doctor(request: HttpRequest, doctor_id: int):
 
 
 def add_appointment(request: HttpRequest, doctor_id: int):
-    doctors = Doctor.objects.get(id=doctor_id)
+    doctor = Doctor.objects.get(id=doctor_id)
     if request.method == "POST":
-        appointments = Appointment(doctor=doctors, patient_name=request.POST["patient_name"],
+        new_appointments = Appointment(doctor=doctor, patient_name=request.POST["patient_name"],
                                    case_description=request.POST["case_description"], patient_age=request.POST["patient_age"], appointment_datetime=request.POST["appointment_datetime"], is_attended=request.POST["is_attended"])
-        appointments.save()
-        return redirect("Clinic_app:detail_doctor", doctors.id)
+        new_appointments.save()
+    
+        return redirect("Clinic_app:detail_doctor", doctor.id)
