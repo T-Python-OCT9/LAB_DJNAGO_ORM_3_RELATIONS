@@ -1,6 +1,6 @@
 # LAB_DJNAGO_ORM_3_RELATIONS
 
-
+Clinic_Website clinic
 ## Create a Clinic Website , the clinic has the following :
 - Home page to display all the doctors in your clinic .
 - detail page for doctor, when clicked the doctor detail page is displayed.
