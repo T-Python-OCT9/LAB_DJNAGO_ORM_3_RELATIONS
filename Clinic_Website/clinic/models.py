@@ -4,8 +4,7 @@ from django.db import models
 
 class Doctor(models.Model):
     specialization_choices = models.TextChoices("specialization"
-    ,["Anesthesiology","Dermatology","Ophthalmology","Pediatrics"
-    ,"Psychiatry","Surgery","Orthopedic"])
+    ,["Anesthesiology","Dermatology","Ophthalmology","Pediatrics"])
 
     name = models.CharField(max_length=512)
     description = models.TextField()
@@ -20,5 +19,3 @@ class Appointment(models.Model):
     patient_age = models.IntegerField()
     appointment_datetime = models.DateTimeField()
     is_attended = models.BooleanField()
-
-
